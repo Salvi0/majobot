@@ -2,42 +2,43 @@
   "name": "@majoexe/database",
   "version": "6.0.0",
   "description": "Majo.exe main database schema/client/migrations package",
-  "exports": {
-    ".": "./src/client.js",
-    "./redis": "./src/redis.js"
-  },
   "type": "module",
-  "prisma": {
-    "seed": "node ./src/seed.js"
+  "exports": {
+    ".": "./src/client.ts",
+    "./types": "./src/types.ts",
+    "./redis": "./src/redis/cache.ts"
   },
   "scripts": {
-    "prisma:seed": "node ./src/seed.js",
-    "prisma:generate": "prisma generate && pnpm run prisma:seed",
+    "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "prisma:format": "prisma format",
     "prisma:push": "prisma db push",
+    "prisma:seed": "tsx ./src/seed.ts",
     "format": "prettier . --write --cache --ignore-unknown --plugin=prettier-plugin-prisma",
     "format:check": "prettier . --check --cache",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "prebuild": "pnpm run prisma:generate",
+    "studio": "prisma studio"
   },
   "dependencies": {
     "@majoexe/config": "workspace:*",
-    "@neondatabase/serverless": "0.6.0",
-    "@prisma/adapter-neon": "5.6.0",
-    "@prisma/client": "5.6.0",
-    "chalk": "5.3.0",
-    "globby": "14.0.0",
-    "ioredis": "5.3.2",
-    "prisma": "5.6.0",
+    "@majoexe/typescript-config": "workspace:*",
+    "@neondatabase/serverless": "0.10.4",
+    "@prisma/adapter-neon": "6.2.1",
+    "@prisma/client": "6.2.1",
+    "chalk": "5.4.1",
+    "ioredis": "5.4.2",
+    "prisma": "6.2.1",
     "prisma-redis-middleware": "4.8.0",
-    "ws": "^8.14.2"
+    "ws": "8.18.0"
   },
   "devDependencies": {
+    "@types/ws": "8.5.13",
     "prettier-plugin-prisma": "5.0.0"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=20"
   },
   "repository": {
     "type": "git",
@@ -58,5 +59,5 @@
     "url": "https://github.com/igorkowalczyk/majo.exe/issues"
   },
   "homepage": "https://github.com/igorkowalczyk/majo.exe#readme",
-  "packageManager": "pnpm@8.11.0"
+  "packageManager": "pnpm@9.15.4"
 }

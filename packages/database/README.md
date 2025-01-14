@@ -12,7 +12,8 @@
 - `/prisma/schema.prisma` contains database schema. It's used by [Prisma](https://www.prisma.io/) to generate database client.
 - `/prisma/migrations` contains database migrations. They are used to update database. Do not edit them manually.
 - `/src/client.js` contains database client. It's used by Majo.exe to interact with database. It also includes edge client for Prisma Data Proxy.
-- `/src/redis.js` contains Redis client. It's used by Majo.exe to cache queries and data. It supports Redis and memory cache depending on configuration. It also includes functions to add, remove and get data from cache.
+- `/src/redis/client.js` contains Redis client. It's used by Majo.exe to cache queries and data.
+- `/src/redis/cache.js` contains cache functions and other cache related functions.
 - `/src/seed.js` contains database seed. It's used to populate database with initial data like bot slash commands. It's executed by `pnpm prisma:seed` or `pnpm prisma:generate` command.
 
 > [!IMPORTANT]
@@ -29,7 +30,7 @@
 2. Create new file or edit existing `.env` file in root directory of the project
 3. In `.env` file set these values:
    - `DATABASE_URL` - pooling database connection string
-   - `DIRECT_URL` - non-pooling database connection string
+   - `DATABASE_URL_UNPOOLED` - non-pooling database connection string
 4. Run `pnpm install` to install dependencies.
 5. Run `pnpm prisma:migrate` to generate & apply initial migration.
 6. Run `pnpm prisma:generate` to generate database client.
@@ -42,7 +43,7 @@
 4. Create new file or edit existing `.env` file in root directory of the project
 5. In `.env` file set this values:
    - `DATABASE_URL=postgresql://postgres:postgres@localhost:5432/majoexe`
-   - `DIRECT_URL=postgresql://postgres:postgres@localhost:5432/majoexe`
+   - `DATABASE_URL_UNPOOLED=postgresql://postgres:postgres@localhost:5432/majoexe`
 6. Run `pnpm install` to install dependencies.
 7. Run `pnpm prisma:migrate` to generate & apply initial migration.
 8. Run `pnpm prisma:generate` to generate database client.
@@ -52,7 +53,7 @@
 
 ---
 
-## ⌛ Caching [optional]
+## ⌛ Caching with Redis
 
 ### ☁ Redis Cloud
 
@@ -72,16 +73,13 @@
    - `REDIS_URL`- `ioredis` connection string (`redis://localhost:6379`)
 6. That's it! Majo.exe will automatically cache data in Redis.
 
-> [!NOTE]
-> If you do not set `REDIS_URL` in `.env` file Majo.exe will use memory cache instead of Redis. Memory cache is not persistent and will be cleared after restarting Majo.exe. Memory cache will consume more resources than Redis cache.
-
 ---
 
 ## 🔒 Example `.env` file
 
 ```
 DATABASE_URL=DATABASE_URL
-DIRECT_URL=DIRECT_DATABASE_URL
+DATABASE_URL_UNPOOLED=DIRECT_DATABASE_URL
 
 REDIS_URL=REDIS_URL
 ```
@@ -94,9 +92,11 @@ REDIS_URL=REDIS_URL
 ## 📝 Contributors
 
 - [**@binary-blazer**](https://github.com/binary-blazer) - Hosting support
+- [**@TsukiyoDevs**](https://github.com/TsukiyoDevs) - Bug fixes, New features, Testing
 - [**@r-kjha**](https://github.com/r-kjha) - Emoji config support, Bug fixes, New features, Testing
 - [**@Joao-Victor-Liporini**](https://github.com/Joao-Victor-Liporini) - Bug fixes, Command handler improvements, Testing, New features
 - [**@evandev**](https://github.com/xefew) - Bug fixes, Testing
+- [**iWeedy\_**](https://github.com/i-weedy) - Testing
 - [**@krzesl0**](https://github.com/krzesl0) - New Features, Bug fixes, Testing
 - [**@\_index1337**](https://github.com/index1337) - Readme tutorials
 - [**@Wafelowski**](https://github.com/HeavyWolfPL) - Translation improvements
@@ -106,10 +106,9 @@ REDIS_URL=REDIS_URL
 
 **These wonderful people and services have helped develop Majo.exe, without them this project would not exist. Thanks goes to these wonderful people!**
 
-|                                                                                                                                                             | Sponsor                                                             | Description                                                                                                                                                         |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| ![TrestHost Logo](https://media.discordapp.net/attachments/1016532713173426297/1137629737334870038/tresthost.png?width=112&height=112)                      | [**TrestHost**](https://dash.tresthost.me/register?ref=majonez.exe) | **TrestHost is a good and powerful hosting provider** providing servers from the **USA and Germany**. Try us out today!                                             |
-| ![Terohost Logo](https://media.discordapp.net/attachments/905722570286960650/1139902959308783677/943e2f13a56ed86da3bfd4ffcbd5094e.png?width=112&height=112) | [Terohost](https://my.terohost.com/aff.php?aff=17)                  | **TeroHost is a Discord Bot hosting** provider that helps take care of all your needs regarding your Discord Bot to ensure your bot perfect uptime, ping and speed. |
+|                                                                      | Sponsor                                                             | Description                                                                                                             |
+| -------------------------------------------------------------------- | ------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------- |
+| ![TrestHost Logo](https://majoexe.xyz/assets/sponsors/tresthost.png) | [**TrestHost**](https://dash.tresthost.me/register?ref=majonez.exe) | **TrestHost is a good and powerful hosting provider** providing servers from the **USA and Germany**. Try us out today! |
 
 ## ⁉️ Issues
 
