@@ -23,15 +23,16 @@
    - `HOTJAR_ID` - Your Hotjar ID (optional)
    - Database URLs [[Tutorial](/packages/database/README.md)]
      - `DATABASE_URL` - Main database URL
-     - `DIRECT_URL` - Direct database URL (optional)
+     - `DATABASE_URL_UNPOOLED` - Direct database URL (optional)
+     - `REDIS_URL` - Redis database URL
 7. Run `pnpm i` to install all dependencies
 8. Go to `/packages/config/` directory and change values in `/configs/dashboard.js` to your values
-9. Go back to main directory and run `pnpm run dev --filter=dashboard` or `pnpm run deploy --filter=dashboard` to start dashboard
+9. Go back to main directory and run `pnpm run dev --filter="@majoexe/dashboard"` or `pnpm run deploy --filter="@majoexe/dashboard"` to start dashboard
 10. That's it! You can now visit your dashboard for the first time!
 
 ## ▲ Vercel Deploy
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FIgorKowalczyk%2Fmajo.exe&env=TOKEN,SECRET,CLIENT_ID,CLIENT_SECRET,NEXTAUTH_URL,DATABASE_URL,DIRECT_URL,NEXT_PUBLIC_URL&envDescription=Tokens%20needed%20for%20Dashboard&envLink=https%3A%2F%2Fgithub.com%2Figorkowalczyk%2Fmajo.exe&project-name=majo-exe&repository-name=majo-exe&demo-title=Majo.exe%20-%20Dashboard&demo-description=Majo.exe%20Dashboard%20-%20Next.js%20application%20for%20managing%20Majo.exe%20Discord%20bot.&demo-url=https%3A%2F%2Fmajoexe.xyz&demo-image=https%3A%2F%2Fgithub.com%2FIgorKowalczyk%2Fmajo.exe%2Fassets%2F49127376%2F02d4d63d-2cea-44f2-88b6-7e645dc272ea)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FIgorKowalczyk%2Fmajo.exe&env=TOKEN,SECRET,CLIENT_ID,CLIENT_SECRET,NEXTAUTH_URL,DATABASE_URL,DATABASE_URL_UNPOOLED,NEXT_PUBLIC_URL&envDescription=Tokens%20needed%20for%20Dashboard&envLink=https%3A%2F%2Fgithub.com%2Figorkowalczyk%2Fmajo.exe&project-name=majo-exe&repository-name=majo-exe&demo-title=Majo.exe%20-%20Dashboard&demo-description=Majo.exe%20Dashboard%20-%20Next.js%20application%20for%20managing%20Majo.exe%20Discord%20bot.&demo-url=https%3A%2F%2Fmajoexe.xyz&demo-image=https%3A%2F%2Fgithub.com%2FIgorKowalczyk%2Fmajo.exe%2Fassets%2F49127376%2F02d4d63d-2cea-44f2-88b6-7e645dc272ea)
 
 1. Click `Deploy with Vercel` button above and follow instructions
 2. Go to `/packages/database/` directory and follow [Database Setup](/packages/database/README.md) tutorial
@@ -82,9 +83,11 @@ Ensure your setup meets these prerequisites before setting up Majo.exe:
 ## 📝 Contributors
 
 - [**@binary-blazer**](https://github.com/binary-blazer) - Hosting support
+- [**@TsukiyoDevs**](https://github.com/TsukiyoDevs) - Bug fixes, New features, Testing
 - [**@r-kjha**](https://github.com/r-kjha) - Emoji config support, Bug fixes, New features, Testing
 - [**@Joao-Victor-Liporini**](https://github.com/Joao-Victor-Liporini) - Bug fixes, Command handler improvements, Testing, New features
 - [**@evandev**](https://github.com/xefew) - Bug fixes, Testing
+- [**iWeedy\_**](https://github.com/i-weedy) - Testing
 - [**@krzesl0**](https://github.com/krzesl0) - New Features, Bug fixes, Testing
 - [**@\_index1337**](https://github.com/index1337) - Readme tutorials
 - [**@Wafelowski**](https://github.com/HeavyWolfPL) - Translation improvements
@@ -94,10 +97,9 @@ Ensure your setup meets these prerequisites before setting up Majo.exe:
 
 **These wonderful people and services have helped develop Majo.exe, without them this project would not exist. Thanks goes to these wonderful people!**
 
-|                                                                                                                                                             | Sponsor                                                             | Description                                                                                                                                                         |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| ![TrestHost Logo](https://media.discordapp.net/attachments/1016532713173426297/1137629737334870038/tresthost.png?width=112&height=112)                      | [**TrestHost**](https://dash.tresthost.me/register?ref=majonez.exe) | **TrestHost is a good and powerful hosting provider** providing servers from the **USA and Germany**. Try us out today!                                             |
-| ![Terohost Logo](https://media.discordapp.net/attachments/905722570286960650/1139902959308783677/943e2f13a56ed86da3bfd4ffcbd5094e.png?width=112&height=112) | [Terohost](https://my.terohost.com/aff.php?aff=17)                  | **TeroHost is a Discord Bot hosting** provider that helps take care of all your needs regarding your Discord Bot to ensure your bot perfect uptime, ping and speed. |
+|                                                                      | Sponsor                                                             | Description                                                                                                             |
+| -------------------------------------------------------------------- | ------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------- |
+| ![TrestHost Logo](https://majoexe.xyz/assets/sponsors/tresthost.png) | [**TrestHost**](https://dash.tresthost.me/register?ref=majonez.exe) | **TrestHost is a good and powerful hosting provider** providing servers from the **USA and Germany**. Try us out today! |
 
 ## ⁉️ Issues
 

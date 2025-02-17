@@ -1,16 +1,17 @@
-import eslintConfig from "@igorkowalczyk/eslint-config/flat";
-import turboPlugin from "eslint-plugin-turbo";
+import eslintConfig from "@igorkowalczyk/eslint-config";
 
 export default [
+ // prettier
+ ...eslintConfig.base,
+ //...eslintConfig.react,
+ //...eslintConfig.next,
+ ...eslintConfig.node,
+ ...eslintConfig.typescript,
+ //...eslintConfig.tailwindcss,
  {
-  ...eslintConfig,
-  plugins: {
-   ...eslintConfig.plugins,
-   turbo: turboPlugin,
-  },
+  name: "Override",
   rules: {
-   ...eslintConfig.rules,
-   "turbo/no-undeclared-env-vars": "warn",
+   "require-await": "off",
   },
  },
 ];
